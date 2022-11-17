@@ -5,7 +5,7 @@
 # Copy Amazon Connect instance A to instance B safely
 #
 
-VERSION=1.2
+VERSION=1.2.2
 SCRIPT_VERSION="$(basename $0) $VERSION"
 
 USAGE=$(cat <<EOD
@@ -608,7 +608,8 @@ EOD
 
         aws_connect describe-routing-profile \
             --instance-id $instance_id_b \
-            --routing-profile-id $routing_id_b \
+            --routing-profile-id $routing_id_b |
+            jq -r "del(.RoutingProfile.NumberOfAssociatedQueues, .RoutingProfile.NumberOfAssociatedUsers)" \
             > "$instance_alias_dir_b/$routing_json" || error $LINENO
 
         aws_connect list-routing-profile-queues \
@@ -728,7 +729,8 @@ EOD
 
                 aws_connect describe-routing-profile \
                     --instance-id $instance_id_b \
-                    --routing-profile-id $routing_id_b \
+                    --routing-profile-id $routing_id_b |
+                    jq -r "del(.RoutingProfile.NumberOfAssociatedQueues, .RoutingProfile.NumberOfAssociatedUsers)" \
                     > "$instance_alias_dir_b/$routing_json" || error $LINENO
             fi
         fi

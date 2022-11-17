@@ -1,6 +1,6 @@
 # Amazon-Connect-Copy User Guide
 
-The Amazon-Connect-Copy script (v1.2) copies components from the source Amazon Connect instance
+The Amazon-Connect-Copy script (v1.2.2) copies components from the source Amazon Connect instance
 to the target instance safely, fixing all internal references.
 
 You may use Amazon-Connect-Copy to deploy an Amazon Connect instance across environments
@@ -246,3 +246,47 @@ Example:
 - The Amazon-Connect-Copy script does not affect any instance-specific settings outside of
   the Amazon Connect console, such as
   [Amazon Connect service quotas](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html).
+- The Amazon-Connect-Copy script requires the following actions to be allowed. Please configure your AWS Profile with a role authorised to perform these actions:
+  ```
+  connect:AssociateBot
+  connect:AssociateLambdaFunction
+  connect:AssociateLexBot
+  connect:AssociateQueueQuickConnects
+  connect:AssociateRoutingProfileQueues
+  connect:CreateContactFlow
+  connect:CreateContactFlowModule
+  connect:CreateHoursOfOperation
+  connect:CreateQueue
+  connect:CreateQuickConnect
+  connect:CreateRoutingProfile
+  connect:DeleteContactFlow
+  connect:DeleteContactFlowModule
+  connect:DeleteHoursOfOperation
+  connect:DeleteQuickConnect
+  connect:DescribeContactFlow
+  connect:DescribeContactFlowModule
+  connect:DescribeHoursOfOperation
+  connect:DescribeQueue
+  connect:DescribeQuickConnect
+  connect:DescribeRoutingProfile
+  connect:DisassociateRoutingProfileQueues
+  connect:ListContactFlowModules
+  connect:ListContactFlows
+  connect:ListHoursOfOperations
+  connect:ListInstances
+  connect:ListPhoneNumbers
+  connect:ListPrompts
+  connect:ListQueueQuickConnects
+  connect:ListQueues
+  connect:ListQuickConnects
+  connect:ListRoutingProfileQueues
+  connect:ListRoutingProfiles
+  connect:UpdateContactFlowContent
+  connect:UpdateContactFlowModuleContent
+  connect:UpdateHoursOfOperation
+  connect:UpdateQueueHoursOfOperation
+  connect:UpdateQueueOutboundCallerConfig
+  connect:UpdateQuickConnectConfig
+  connect:UpdateRoutingProfileConcurrency
+  connect:UpdateRoutingProfileDefaultOutboundQueue
+  ```
